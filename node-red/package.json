@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "browserify": "^16.2.3",
     "dotenv": "^6.2.0",
     "node-red": "^0.19.5",
+    "node-red-contrib-swagger": "github:klimentLambevski/node-red-contrib-swagger",
     "node-red-dashboard": "^2.11.0",
     "rho-contracts": "0.0.5"
   }

@@ -1,0 +1,167 @@
+[
+    {
+        "id": "3d23a690.5439ea",
+        "type": "tab",
+        "label": "CoOp",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "2e57015c.e98e1e",
+        "type": "swagger configuration",
+        "z": "",
+        "apiUrl": "https://gist.githubusercontent.com/bigdoods/aae6079bf88c00dac1e77ea6fd3a1e3d/raw/97b8e9d145b474675316e977e3cc1a7d835d2df0/speckle",
+        "name": ""
+    },
+    {
+        "id": "9d8158f6.4fcea8",
+        "type": "function",
+        "z": "3d23a690.5439ea",
+        "name": "Create Payload",
+        "func": "msg.payload = {\n    \"data\": {\n        \"key1\": \"val1\",\n        \"key2\": 2,\n        \"key3\": true,\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 276,
+        "y": 340,
+        "wires": [
+            [
+                "200f2e15.62e462"
+            ]
+        ]
+    },
+    {
+        "id": "c5fd80ca.f86",
+        "type": "inject",
+        "z": "3d23a690.5439ea",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "77873130.be90a"
+            ]
+        ]
+    },
+    {
+        "id": "ace63d5a.325ef",
+        "type": "debug",
+        "z": "3d23a690.5439ea",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 587,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "200f2e15.62e462",
+        "type": "function",
+        "z": "3d23a690.5439ea",
+        "name": "Contract",
+        "func": "// if failed, return to sender (events)\n// if passed, notify receiver (events)\n\n// https://github.com/sefaira/rho-contracts.js\n\nvar c = global.get(\"contracts\")\nlet input = msg.payload.data.key2\n\nlet val\n\nlet x = y => {\n    val = c.number.check(y)\n}\n\nx(input)\n\nmsg.payload = {\n    x: val\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 340,
+        "wires": [
+            [
+                "ace63d5a.325ef"
+            ]
+        ]
+    },
+    {
+        "id": "d5874b34.8ecb78",
+        "type": "swagger api",
+        "z": "3d23a690.5439ea",
+        "apiConfig": "2e57015c.e98e1e",
+        "resource": "Accounts",
+        "method": "UserRegister",
+        "inType": "",
+        "outType": "",
+        "name": "",
+        "x": 380,
+        "y": 140,
+        "wires": [
+            [
+                "cfb679e6.66dac8"
+            ]
+        ]
+    },
+    {
+        "id": "e4ce185d.ce20a8",
+        "type": "http request",
+        "z": "3d23a690.5439ea",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://localhost:3001/api",
+        "tls": "",
+        "x": 270,
+        "y": 440,
+        "wires": [
+            [
+                "ace63d5a.325ef"
+            ]
+        ]
+    },
+    {
+        "id": "77873130.be90a",
+        "type": "function",
+        "z": "3d23a690.5439ea",
+        "name": "Create user",
+        "func": "var user = {\n  \"_id\": \"id\",\n  \"role\": \"string\",\n  \"avatar\": \"string\",\n  \"apitoken\": \"string\",\n  \"token\": \"string\",\n  \"email\": \"user@bimlauncher.com\",\n  \"name\": \"User\",\n  \"surname\": \"Name\",\n  \"company\": \"BIMLauncher\",\n  \"logins\": [],\n  \"password\": \"password\"\n}\n\nlet userObject = {\n    payload: {\n        body: user\n    },\n    giraffe: {\n        original: user\n    }\n}\n\nreturn userObject",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 179,
+        "y": 140,
+        "wires": [
+            [
+                "d5874b34.8ecb78"
+            ]
+        ]
+    },
+    {
+        "id": "cfb679e6.66dac8",
+        "type": "function",
+        "z": "3d23a690.5439ea",
+        "name": "Login user",
+        "func": "var user = {\n  \"email\": msg.giraffe.original.email,\n  \"password\": msg.giraffe.original.password\n}\n\nlet userObject = {\n    payload: {\n        body: user\n    }\n}\n\nreturn userObject",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "98d0a2ac.a2f69"
+            ]
+        ]
+    },
+    {
+        "id": "98d0a2ac.a2f69",
+        "type": "swagger api",
+        "z": "3d23a690.5439ea",
+        "apiConfig": "2e57015c.e98e1e",
+        "resource": "Accounts",
+        "method": "UserLogin",
+        "inType": "",
+        "outType": "",
+        "name": "",
+        "x": 460,
+        "y": 240,
+        "wires": [
+            [
+                "ace63d5a.325ef"
+            ]
+        ]
+    }
+]
