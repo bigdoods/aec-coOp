@@ -21,7 +21,7 @@
         "func": "msg.payload = {\n    \"data\": {\n        \"key1\": \"val1\",\n        \"key2\": 2,\n        \"key3\": true,\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 350,
+        "x": 320,
         "y": 420,
         "wires": [
             [
@@ -41,8 +41,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 90,
-        "y": 340,
+        "x": 80,
+        "y": 220,
         "wires": [
             [
                 "77873130.be90a"
@@ -59,8 +59,8 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 661,
-        "y": 340,
+        "x": 670,
+        "y": 420,
         "wires": []
     },
     {
@@ -143,8 +143,42 @@
         "y": 240,
         "wires": [
             [
-                "ace63d5a.325ef"
+                "94cdf73f.490bf8"
             ]
         ]
+    },
+    {
+        "id": "50111c27.e8f624",
+        "type": "inject",
+        "z": "3d23a690.5439ea",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "9d8158f6.4fcea8"
+            ]
+        ]
+    },
+    {
+        "id": "94cdf73f.490bf8",
+        "type": "debug",
+        "z": "3d23a690.5439ea",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 710,
+        "y": 240,
+        "wires": []
     }
 ]

@@ -21,8 +21,8 @@
         "func": "msg.payload = {\n    \"data\": {\n        \"key1\": \"val1\",\n        \"key2\": 2,\n        \"key3\": true,\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 276,
-        "y": 340,
+        "x": 350,
+        "y": 420,
         "wires": [
             [
                 "200f2e15.62e462"
@@ -59,7 +59,7 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 587,
+        "x": 661,
         "y": 340,
         "wires": []
     },
@@ -71,8 +71,8 @@
         "func": "// if failed, return to sender (events)\n// if passed, notify receiver (events)\n\n// https://github.com/sefaira/rho-contracts.js\n\nvar c = global.get(\"contracts\")\nlet input = msg.payload.data.key2\n\nlet val\n\nlet x = y => {\n    val = c.number.check(y)\n}\n\nx(input)\n\nmsg.payload = {\n    x: val\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 440,
-        "y": 340,
+        "x": 514,
+        "y": 420,
         "wires": [
             [
                 "ace63d5a.325ef"
@@ -89,28 +89,11 @@
         "inType": "",
         "outType": "",
         "name": "",
-        "x": 380,
-        "y": 140,
+        "x": 454,
+        "y": 180,
         "wires": [
             [
                 "cfb679e6.66dac8"
-            ]
-        ]
-    },
-    {
-        "id": "e4ce185d.ce20a8",
-        "type": "http request",
-        "z": "3d23a690.5439ea",
-        "name": "",
-        "method": "GET",
-        "ret": "txt",
-        "url": "http://localhost:3001/api",
-        "tls": "",
-        "x": 270,
-        "y": 440,
-        "wires": [
-            [
-                "ace63d5a.325ef"
             ]
         ]
     },
@@ -122,8 +105,8 @@
         "func": "var user = {\n  \"_id\": \"id\",\n  \"role\": \"string\",\n  \"avatar\": \"string\",\n  \"apitoken\": \"string\",\n  \"token\": \"string\",\n  \"email\": \"user@bimlauncher.com\",\n  \"name\": \"User\",\n  \"surname\": \"Name\",\n  \"company\": \"BIMLauncher\",\n  \"logins\": [],\n  \"password\": \"password\"\n}\n\nlet userObject = {\n    payload: {\n        body: user\n    },\n    giraffe: {\n        original: user\n    }\n}\n\nreturn userObject",
         "outputs": 1,
         "noerr": 0,
-        "x": 179,
-        "y": 140,
+        "x": 253,
+        "y": 180,
         "wires": [
             [
                 "d5874b34.8ecb78"
@@ -138,7 +121,7 @@
         "func": "var user = {\n  \"email\": msg.giraffe.original.email,\n  \"password\": msg.giraffe.original.password\n}\n\nlet userObject = {\n    payload: {\n        body: user\n    }\n}\n\nreturn userObject",
         "outputs": 1,
         "noerr": 0,
-        "x": 250,
+        "x": 324,
         "y": 240,
         "wires": [
             [
@@ -156,7 +139,7 @@
         "inType": "",
         "outType": "",
         "name": "",
-        "x": 460,
+        "x": 534,
         "y": 240,
         "wires": [
             [
